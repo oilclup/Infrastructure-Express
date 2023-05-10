@@ -21,17 +21,6 @@ module.exports = async (app) => {
     // CORS
     app.use(cors())
 
-    // app.use((req, res, next) => {
-    //     let ALLOW_ORIGIN = ['https://iyarinmuaythai.com/', 'https://api.vimeo.com']
-    //     let ORIGIN = req.headers.origin
-    //     if (ALLOW_ORIGIN.includes(ORIGIN)) {
-    //         res.header('Access-Control-Allow-Origin', ORIGIN)
-    //     }
-    //     res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, PATCH, DELETE, OPTIONS')
-    //     res.header('Access-Control-Allow-Headers', 'Content-Type, Option, Authorization')
-    //     return next()
-    // })
-
     app.use((req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
         res.header(
@@ -56,6 +45,6 @@ module.exports = async (app) => {
     // Logger
     app.use(morgan('dev'))
   // Custom Response Format
-  app.use(require('./responseFormat'))
+    app.use(require('./responseFormat'))
     
 }

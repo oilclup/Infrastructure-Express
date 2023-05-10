@@ -27,9 +27,10 @@ export const signUp = async (req, res) => {
 
 export const signIn = async (req, res) => {
     try {
+        console.log(req.user)
         const { email, password } = req.body
         const user = await adminModel.findOne({ email })
-
+     
         if (!user) return res.error('Email does not exist', 401)
 
         const validPassword = await validatePassword(password, user.password)

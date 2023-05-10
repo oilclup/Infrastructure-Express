@@ -18,7 +18,7 @@ app.options('*', cors())
 app.use(
   cors({
     credentials: true,
-    origin: ['http://localhost:3000', 'https://iyarinmuaythai.com/', 'https://www.iyarinmuaythai.com/'],
+    origin: ['http://localhost:3000'],
     optionsSuccessStatus: 200
   })
 );
