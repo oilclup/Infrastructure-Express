@@ -27,7 +27,6 @@ export const signUp = async (req, res) => {
 
 export const signIn = async (req, res) => {
     try {
-        console.log(req.user)
         const { email, password } = req.body
         const user = await adminModel.findOne({ email })
      
