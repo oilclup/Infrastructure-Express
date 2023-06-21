@@ -63,7 +63,7 @@ services:
         environment:
             - NODE_ENV=production
             - PORT=8001
-            - VUE_APP_BASE_URL=https://api.iyarinmuaythai.com
+            - VUE_APP_BASE_URL=
         # volumes:
         #     - ./app/admin:/app
         #     - /app/node_modules
@@ -88,20 +88,4 @@ services:
         ports:
             - 8000:8000
 
-    ##### DATA STORES #####
-    mongodb:
-        container_name: mongodb
-        image: mongo:3.4
-        networks:
-            - backend
-        environment:
-            - MONGO_INITDB_ROOT_USERNAME=root
-            - MONGO_INITDB_ROOT_PASSWORD=79d89e3a3d20b61325daafc47fefeeca
-            - TZ=Asia/Bangkok
-        volumes:
-            - ./data/mongodb:/data/db
-        ports:
-            - 27017:27017
-
-networks:
-    backend:
+  
