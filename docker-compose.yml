@@ -1,0 +1,107 @@
+version: '3.7'
+
+services:
+    ##### REVERSE PROXY ####
+
+    nginx:
+        depends_on:
+            - api
+            - admin
+            - www
+        container_name: nginx
+        image: nginx:1.15.12-alpine
+        restart: unless-stopped
+        volumes:
+            - ./deployments/production:/etc/nginx/conf.d
+        ports:
+            - 80:80
+            - 443:443
+        networks:
+            - backend
+
+    ##### APPLICATIONS #####
+
+    api:
+        depends_on:
+            - mongodb
+        container_name: api
+        restart: always
+        build:
+            context: ./app/api
+            dockerfile: Dockerfile
+        environment:
+            - NODE_ENV=production
+            - PORT=3000
+            - MONGODB_URI=mongodb://root:79d89e3a3d20b61325daafc47fefeeca@mongodb:27017/muay-thai-live?authSource=admin
+            - SECRET_KEY=79d89e3a3d20b61325daafc47fefeeca
+            - BT_ENVIRONMENT=production
+            - BT_MERCHANT_ID=ytyk9q92k972535b
+            - BT_PUBLIC_KEY=33sc23ry8kbr9zwg
+            - BT_PRIVATE_KEY=977030226cc9f931bcf9614759fc6fd0
+            - SENDGRID_API_KEY=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
+            - FROM_EMAIL=noreply@muaythaiiyarin.com
+            - GMAIL_ID=iyarin.muaythai.mail@gmail.com
+            - GMAIL_PASSWORD=Deva2013!
+            - FCM_SERVER_KEY=AAAA3XJO6dY:APA91bEDE8zZjBFGTsFRuL5jC1goFxOZq5wdexSYdC1cbWjXshvt9howRI7qAbqlALRmpBwscmInJoUYwbbbMqzR21vLhWoX2-l0tDFzIwKDiRR-HVyFEZTdr7eVVxaIJaEnz0jFuT38
+
+        volumes:
+            - ./app/api:/usr/src/app
+            - /usr/src/app/node_modules
+        ports:
+            - 3000:3000
+        networks:
+            - backend
+
+    admin:
+        depends_on:
+            - api
+        container_name: admin
+        restart: always
+        build:
+            context: ./app/admin
+            dockerfile: Dockerfile
+        environment:
+            - NODE_ENV=production
+            - PORT=8001
+            - VUE_APP_BASE_URL=https://api.iyarinmuaythai.com
+        # volumes:
+        #     - ./app/admin:/app
+        #     - /app/node_modules
+        networks:
+            - backend
+        ports:
+            - 8001:8001
+
+    www:
+        depends_on:
+            - api
+        container_name: www
+        restart: always
+        build:
+            context: ./app/www
+            dockerfile: Dockerfile
+        environment:
+            - NODE_ENV=production
+            - API_URL=https://api.iyarinmuaythai.com
+        networks:
+            - backend
+        ports:
+            - 8000:8000
+
+    ##### DATA STORES #####
+    mongodb:
+        container_name: mongodb
+        image: mongo:3.4
+        networks:
+            - backend
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=79d89e3a3d20b61325daafc47fefeeca
+            - TZ=Asia/Bangkok
+        volumes:
+            - ./data/mongodb:/data/db
+        ports:
+            - 27017:27017
+
+networks:
+    backend:

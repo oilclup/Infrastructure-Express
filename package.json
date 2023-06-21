@@ -1,0 +1,22 @@
+{
+    "name": "workmotion-muay-thai-usa",
+    "version": "1.0.0",
+    "description": "",
+    "main": "prettier.config.js",
+    "scripts": {
+        "prepare": "concurrently \"yarn prepare:api\" \"yarn prepare:admin\" \"yarn prepare:www\"",
+        "prepare:www": "cd app/www && yarn install",
+        "prepare:admin": "cd app/admin && yarn install",
+        "prepare:api": "cd app/api && yarn install",
+        "dev": "concurrently \"yarn dev:api\" \"yarn dev:admin\" \"yarn dev:www\"",
+        "dev:www": "cd app/www && yarn dev",
+        "dev:admin": "cd app/admin && yarn dev",
+        "dev:api": "cd app/api && yarn dev"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "concurrently": "^5.2.0"
+    }
+}
