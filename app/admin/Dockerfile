@@ -10,7 +10,7 @@ COPY package*.json ./
 RUN yarn install
 
 # Set environment variables
-ENV VUE_APP_BASE_URL=https://api.iyarinmuaythai.com
+ENV VUE_APP_BASE_URL=
 
 COPY . .
 

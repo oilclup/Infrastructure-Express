@@ -7,5 +7,4 @@ const router = express.Router()
 router.post('/', createExample)
 router.get('/', getExamples)
 
-
 export default router

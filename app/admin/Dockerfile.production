@@ -13,7 +13,7 @@ RUN yarn install
 
 COPY . .
 
-ENV VUE_APP_BASE_URL=http://api.iyarinmuaythai.com
+ENV VUE_APP_BASE_URL=
 
 RUN yarn build
 

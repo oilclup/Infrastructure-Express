@@ -9,5 +9,4 @@ router.use(AuthRoutes)
 router.use('/example', checkAuth, checkRole('admin'), ExampleRoutes)
 
 
-
 module.exports = router
