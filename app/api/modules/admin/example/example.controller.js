@@ -5,15 +5,15 @@ import { paginatedResults } from 'api/services/pagination'
 
 export const createExample = async (req, res) => {
     try {
-        const { title, detail } = req.body
+       /*  const { title, detail } = req.body
         const example = await new exampleModel({
             title : title,
             detail : detail
         })
 
         await example.save()
-        res.created('created example successfully')
-
+        res.created('created example successfully') */
+        res.success('created example successfully',201) 
     } catch (error) {
         res.error(error.message, error.status)
     }

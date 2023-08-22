@@ -3,6 +3,9 @@ import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
 import fileUpload from 'express-fileupload'
 import cors from 'cors'
+import responseTime from 'response-time'
+
+import loggerMiddleware from '../middleware/loggerMiddleware'
 
 module.exports = async (app) => {
     // enable files upload
@@ -41,9 +44,23 @@ module.exports = async (app) => {
 
     // Cookies
     app.use(cookieParser())
+    app.use(responseTime());
 
-    // Logger
-    app.use(morgan('dev'))
+   morgan.token('custom', (req, res) => {
+    const method = req.method;
+    const url = req.originalUrl;
+    const status = res.statusCode;
+    const responseTime = res.get('X-Response-Time');
+    const contentLength = res.get('Content-Length');
+    const responseRe = (responseTime) ? responseTime : "-"
+    const contentRe = (contentLength) ? contentLength : "-"
+    return `[${new Date().toISOString()}] ${method} ${url} ${status} ${responseRe} - ${contentRe}`;
+  });
+  
+  app.use(morgan(':custom'));
+  
+  app.use(loggerMiddleware);
+   
   // Custom Response Format
     app.use(require('./responseFormat'))
     

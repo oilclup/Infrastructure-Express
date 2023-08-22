@@ -1,9 +1,7 @@
 import express from 'express'
 import config from './configs/app'
 import AdminRoutes from './modules/admin'
-
 import cors from 'cors'
-
 import path from 'path'
 
 const app = express()
