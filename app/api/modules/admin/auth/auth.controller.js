@@ -3,10 +3,10 @@ import { hashPassword, validatePassword } from 'api/middleware/security'
 import jwt from 'api/middleware/jwt'
 
 export const signUp = async (req, res) => {
-    try {
+    try { 
         const { email, password, role } = req.body
 
-        const user = await adminModel.findOne({ email })
+      /*   const user = await adminModel.findOne({ email })
         if (user) return res.error('Email is already taken', 500)
 
         const hashedPassword = await hashPassword(password)
@@ -19,7 +19,7 @@ export const signUp = async (req, res) => {
         newUser.accessToken = accessToken
 
         await newUser.save()
-        res.success(newUser)
+        res.success(newUser) */
     } catch (error) {
         res.error(error.message, error.status)
     }

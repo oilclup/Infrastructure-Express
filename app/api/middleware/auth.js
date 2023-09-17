@@ -48,13 +48,6 @@ const checkRole = (...roles) => {
 };
 
 
-
-
-
-
-
-
-
 const getOTP = (async (req, res, next) => {
   if(!req.body.mobile){
     return next(new AppError("Please input mobile number", 400));

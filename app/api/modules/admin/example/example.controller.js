@@ -31,7 +31,6 @@ export const getExamples = async (req, res) => {
             .sort(_q.sort)
             .limit(limit)
             .skip(offset)
-            console.log(_q.query)
 
         let count = await exampleModel.countDocuments(_q.query)
         const result = await paginatedResults(rows, count, limit, req)

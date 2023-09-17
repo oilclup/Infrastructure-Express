@@ -1,7 +1,10 @@
 const loggerMiddleware = (req, res, next) => {
-
   if (Object.keys(req.params).length > 0) {
-    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url} 'Params:', ${req.params}`);
+    console.log(`'Params:',`, req.params);
+  }
+
+  if (Object.keys(req.query).length > 0) {
+    console.log(`'Query:',`, req.query);
   }
 
   if (Object.keys(req.body).length > 0) {
