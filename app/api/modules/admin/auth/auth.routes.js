@@ -5,6 +5,6 @@ import { signupValidator,validateRules } from '../validator/auth.validator'
 const router = express.Router()
 
 router.post('/signup',signupValidator(),validateRules, signUp)
-router.post('/signin',signupValidator(),validateRules, signIn)
+router.post('/signin',/* ,signupValidator(),validateRules, */ signIn)
 
 export default router

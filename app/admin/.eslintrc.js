@@ -1,81 +1,22 @@
 module.exports = {
-  root: true,
-  parserOptions: {
-    sourceType: 'script',
-  },
-  extends: [
-    // https://github.com/vuejs/eslint-plugin-vue#bulb-rules
-    'plugin:vue/recommended',
-    // https://github.com/standard/standard/blob/master/docs/RULES-en.md
-    'standard',
-    // https://github.com/prettier/eslint-config-prettier
-    'prettier',
-    'prettier/standard',
-    'prettier/vue',
-  ],
-  rules: {
-    // Only allow debugger in development
-    'no-debugger': process.env.PRE_COMMIT ? 'error' : 'off',
-    // Only allow `console.log` in development
-    'no-console': process.env.PRE_COMMIT
-      ? ['error', { allow: ['warn', 'error'] }]
-      : 'off',
-    'vue/array-bracket-spacing': 'error',
-    'vue/arrow-spacing': 'error',
-    'vue/block-spacing': 'error',
-    'vue/brace-style': 'error',
-    'vue/camelcase': 'error',
-    'vue/comma-dangle': ['error', 'always-multiline'],
-    'vue/component-name-in-template-casing': 'off',
-    'vue/dot-location': ['error', 'property'],
-    'vue/eqeqeq': 'error',
-    'vue/key-spacing': 'error',
-    'vue/keyword-spacing': 'error',
-    'vue/no-boolean-default': ['error', 'default-false'],
-    'vue/no-deprecated-scope-attribute': 'error',
-    'vue/no-empty-pattern': 'error',
-    'vue/object-curly-spacing': ['error', 'always'],
-    'vue/space-infix-ops': 'error',
-    'vue/space-unary-ops': 'error',
-    'vue/v-on-function-call': 'error',
-    'vue/v-slot-style': [
-      'error',
-      {
-        atComponent: 'v-slot',
-        default: 'v-slot',
-        named: 'longform',
-      },
+    extends: [
+      // add more generic rulesets here, such as:
+      // 'eslint:recommended',
+      'plugin:vue/vue3-recommended',
+      // 'plugin:vue/recommended' // Use this if you are using Vue.js 2.x.
     ],
-    'vue/valid-v-slot': 'error',
-  },
-  overrides: [
-    {
-      files: ['axios.js', 'src/**/*', 'tests/unit/**/*', 'tests/e2e/**/*'],
-      parserOptions: {
-        parser: 'babel-eslint',
-        sourceType: 'module',
-        "allowImportExportEverywhere": true
-      },
-      env: {
-        browser: true,
-      },
-    },
-    {
-      files: ['**/*.unit.js'],
-      parserOptions: {
-        parser: 'babel-eslint',
-        sourceType: 'module',
-        "allowImportExportEverywhere": true
+    rules: {
+      // override/add rules settings here, such as:
+      'vue/no-unused-vars': 'error',
+      'vue/html-self-closing': 'off',
+      'vue/html-indent': 'off',
+      'vue/html-closing-bracket-spacing': 'off',
+      'vue/no-multi-spaces': 'off',
+      'vue/attributes-order': 'off',
+      'vue/max-attributes-per-line': 'off',
+      'vue/multiline-html-element-content-newline': 'off',
+      'vue/singleline-html-element-content-newline': 'off',
+      'vue/no-unused-components': 'off',
 
-      },
-      env: { jest: true },
-      globals: {
-        mount: false,
-        shallowMount: false,
-        shallowMountView: false,
-        createComponentMocks: false,
-        createModuleStore: false,
-      },
-    },
-  ],
-}
+    }
+  }

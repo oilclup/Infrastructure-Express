@@ -1,12 +1,10 @@
-// import axios from 'axios'
-const axios = require('axios')
+import axios from 'axios';
 
 axios.defaults.baseURL = process.env.VUE_APP_BASE_URL || 'http://localhost:3000'
-const data = JSON.parse(window.localStorage.getItem('auth.currentUser'))
-let token = ''
-if (data) {
-  token = data.accessToken
-}
+
+const data = JSON.parse(window.localStorage.getItem('auth.currentUser'));
+const token = data ? data.accessToken : '';
+
 axios.defaults.headers['Authorization'] = `Bearer ${token}`
 
-export default axios
+export default axios;

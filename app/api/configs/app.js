@@ -5,8 +5,7 @@ module.exports = {
     port: process.env.PORT || 3000,
     isProduction: process.env.NODE_ENV === 'production',
     pageLimit: process.env.PAGE_LIMIT || 20,
-    secret:
-        process.env.NODE_ENV === 'production' ? process.env.SECRET_KEY : '1234',
+    jwt_secret_key: process.env.NODE_ENV === 'production' ? process.env.JWT_SECRET_KEY : process.env.JWT_SECRET_KEY,
     mongodbUri:
         process.env.NODE_ENV === 'production'
             ? process.env.MONGODB_URI 

@@ -1,25 +1,22 @@
 import adminModel from 'api/modules/models/admin.model'
-import { hashPassword, validatePassword } from 'api/middleware/security'
-import jwt from 'api/middleware/jwt'
+import { sign, verify } from 'api/middleware/jwt'
+import config from '../../../configs/app'
+const secretKey = config.jwt_secret_key
 
 export const signUp = async (req, res) => {
     try { 
         const { email, password, role } = req.body
-
-      /*   const user = await adminModel.findOne({ email })
+        const user = await adminModel.findOne({ email })
         if (user) return res.error('Email is already taken', 500)
 
-        const hashedPassword = await hashPassword(password)
-        const body = Object.assign(req.body, {
-            password: hashedPassword,
-            role: role,
-        })
-        const newUser = new adminModel(body)
-        const accessToken = jwt.sign({ userId: newUser._id })
-        newUser.accessToken = accessToken
-
+        const newUser = new adminModel(req.body)
+        const accessToken = sign({ userId: newUser._id },secretKey,{ expiresIn: '1d'})
         await newUser.save()
-        res.success(newUser) */
+        let data = {
+            message : "Register Success",
+            accessToken,
+        }
+        res.success(data, 201) 
     } catch (error) {
         res.error(error.message, error.status)
     }
@@ -32,22 +29,16 @@ export const signIn = async (req, res) => {
      
         if (!user) return res.error('Email does not exist', 401)
 
-        const validPassword = await validatePassword(password, user.password)
-        if (!validPassword)
-            return res.error('Email or password is not correct', 401)
+        const validPassword = await user.comparePassword(password, user.password)
 
-        const accessToken = jwt.sign(
-            { userId: user._id },
-            process.env.SECRET_KEY,
-            {
-                expiresIn: '1d',
-            }
-        )
+        if (!validPassword) return res.error('Email or password is not correct', 401)
 
-        // persist the token as 't' in cookie with expire date
+        const accessToken = sign({ userId: user._id },secretKey,{ expiresIn: '1d'})
+
         res.cookie('t', accessToken, { expire: 24 * 60 * 60 * 1000 })
 
         let data = {
+            message : "Login Sucess",
             data: {
                 firstName: user.firstName,
                 lastName: user.lastName,

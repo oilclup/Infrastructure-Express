@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
+import bcrypt from 'bcrypt';
 
-const schema = new mongoose.Schema(
+const adminSchema = new mongoose.Schema(
     {
         firstName: {
             type: String,
@@ -39,6 +40,29 @@ const schema = new mongoose.Schema(
     { timestamps: true }
 )
 
+adminSchema.pre('save', async function (next) {
+    if (!this.isModified('password')) {
+        return next();
+    }
+    try {
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(this.password, saltRounds);
+        this.password = hashedPassword;
+        next();
+    } catch (error) {
+        return next(error);
+    }
+});
 
 
-module.exports = mongoose.model('Admin', schema)
+adminSchema.methods.comparePassword = async function (candidatePassword) {
+    try {
+        return await bcrypt.compare(candidatePassword, this.password);
+    } catch (error) {
+        throw error;
+    }
+};
+
+
+
+module.exports = mongoose.model('Admin', adminSchema)
