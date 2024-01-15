@@ -23,7 +23,7 @@ router.beforeEach((to, from, next) => {
 
       if (token.data && typeof token.data.accessToken === 'string') {
         const auth = jwtDecode(token.data.accessToken);
-        console.log("auth", auth);
+        console.log("auth-router", auth);
 
         const now = Math.floor(Date.now() / 1000);
         if (now > auth.exp) {
