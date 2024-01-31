@@ -1,47 +1,84 @@
 <template>
-  <Layout >
-  <div>
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Dashboard</h1>
-            <div class="btn-toolbar mb-2 mb-md-0">
-              <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-              </div>
-              <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                This week
-              </button>
-            </div>
+  <Layout>
+    <div>
+      <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
           </div>
-    <p><strong>Token:</strong></p>
-    <p><strong>Id:</strong></p>
-    <p><strong>Email:</strong></p>
-    <strong>Authorities:</strong>
-    <ul></ul>
-  </div>
-</Layout>
+          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-calendar" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            This week
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm"><Cardboard title="total" :total="items.length" /></div>
+        <div class="col-sm"><Cardboard title="total" :total="items.length" /></div>
+        <div class="col-sm"><Cardboard title="total" :total="items.length" /></div>
+      </div>
+    </div>
+  </Layout>
 </template>
 
 <script>
 import Layout from '@layouts/main'
+import Cardboard from '@components/card/Cardboard'
+import axios from '../../../axios';
 
 export default {
   name: 'Profile',
   components: {
     Layout,
+    Cardboard
+  },
+  data() {
+    return {
+      items: []
+    };
   },
   computed: {
     // currentUser() {
     //   return this.$store.state.auth.user;
     // }
   },
+  beforeCreate() {
+    console.log("beforeCreate");
+
+  },
+  created() {
+    console.log("created");
+
+  },
   mounted() {
     console.log("c", this.$store.state.auth);
-
+    this.getExample()
     /*  if (!this.currentUser) {
           this.$router.push('/login');
         } */
+  },
+  methods: {
+    async getExample() {
+      try {
+        let resp = await axios.get('/api/example')
+        console.log("data", resp)
+
+        this.items = resp.data.data.data
+
+      } catch (err) {
+        console.log("dashborad Err : ", err)
+      }
+    }
   }
 };
 </script>

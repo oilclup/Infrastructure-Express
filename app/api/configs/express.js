@@ -43,9 +43,9 @@ module.exports = async (app) => {
 
     // Cookies
     app.use(cookieParser())
-  
-    app.use(morgan(':remote-addr - :remote-user [:date[iso]] ":method :url HTTP/:http-version" :status :response-time ms - :res[content-length] ":referrer" ":user-agent"'));
-
+    // full option
+    //app.use(morgan(':remote-addr - :remote-user [:date[iso]] ":method :url HTTP/:http-version" :status :response-time ms - :res[content-length] ":referrer" ":user-agent"'));
+    app.use(morgan(':remote-addr - :remote-user [:date[iso]] ":method :url HTTP/:http-version" :status :response-time ms'));
     app.use(loggerMiddleware);
    
   // Custom Response Format

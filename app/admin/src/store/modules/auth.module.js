@@ -27,20 +27,15 @@ export const getters = {
 }
 
 export const actions = {
-  // This is automatically run in `src/state/store.js` when the app
-  // starts, along with any other actions named `init` in other modules.
   init({ state, dispatch }) {
     setDefaultAuthHeaders(state)
     dispatch('validate')
   },
 
-  // Logs in the current user.
   logIn({ commit }, { email, password } = {}) {
-    // if (getters.loggedIn) return dispatch('validate')
     console.log("log login", email)
     return axios.post('/api/signIn', { email, password }).then((response) => {
       const user = response.data
-
       //const token = user.accessToken
 
       commit('SET_CURRENT_USER', user)
@@ -48,27 +43,22 @@ export const actions = {
     })
   },
 
-  // Logs out the current user.
   logOut({ commit }) {
     commit('SET_CURRENT_USER', null)
   },
 
-  // register the user
   register(
     { email, password, firstName, lastName } = {}
   ) {
     // if (getters.loggedIn) return dispatch('validate')
-
     return axios
       .post('/api/signup', { email, password, firstName, lastName })
       .then((response) => {
         const user = response.data
-
         return user
       })
   },
 
-  // register the user
   resetPassword({ dispatch, getters }, { email } = {}) {
     if (getters.loggedIn) return dispatch('validate')
 
@@ -78,8 +68,7 @@ export const actions = {
     })
   },
 
-  // Validates the current user's token and refreshes it
-  // with new data from the API.
+
   validate({ state }) {
     if (!state.currentUser) return Promise.resolve(null)
     // return axios

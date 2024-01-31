@@ -13,38 +13,37 @@ const checkAuth = async(req, res, next) => {
     } else {
         accessToken = req.body.accessToken
     }
-    if (!accessToken) {
-        return res.unauthorized('The user belonging to this token does no longer exist.')
-    }
+
+    if (!accessToken) throw new Error('The user belonging to this token does no longer exist.');
 
     let decoded = jwt.verify(accessToken, process.env.SECRET_KEY);
     let resultDecod = await decoded
     let currentUser = await adminModel.findById(resultDecod.userId); 
 
-      if (!currentUser) {
-        return res.unauthorized('The user belonging to this token does no longer exist.')
-      }
+    if (!currentUser) throw new Error("can't find admin in system.");
+
       currentUser.password = ""
       req.adminInfo = currentUser;
       res.locals.user = currentUser;
       next();
     } catch (error) {
-          return res.error('TAn error occurred during authentication.')
+        //  return res.error('TAn error occurred during authentication.')
+        return res.error(`auth : ${error.message}`, error.status)
+
     }
 }
 
-const checkRole = (...roles) => {
-    try {
-     return (req, res, next) => {
-      if (!roles.includes(req.adminInfo.role)) {
-        return next(res.unauthorized('You do not have permission to perform this action') );
+const checkRole = (roles) => {
+  return (req, res, next) => {
+      try {
+          if (!roles.includes(req.adminInfo.role)) {
+              throw new Error('You do not have permission to perform this action!');
+          }
+          next();
+      } catch (error) {
+        return res.error(`permission : ${error.message}`, error.status)
       }
-  
-      next();
-     };
-    } catch (error) {
-      return res.error(error)
-    }
+  };
 };
 
 
