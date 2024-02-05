@@ -10,6 +10,7 @@ module.exports = {
       .set('@store', path.resolve(__dirname, 'src/store'))
       .set('@pages', path.resolve(__dirname, 'src/pages'))
       .set('@layouts', path.resolve(__dirname, 'src/layouts'))
+      .set('@plugins', path.resolve(__dirname, 'src/plugins'))
 
   },
 };

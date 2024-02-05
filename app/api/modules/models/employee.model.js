@@ -17,8 +17,9 @@ const schema = new mongoose.Schema({
     },
     age : {
         type: Number,
-    }
-    
+    },
+    isDeleted: { type: Boolean, default: false },
+    deletedAt: { type: Date, default: null },
    
 });
 schema.plugin(uniqueValidator, { status: 500 })

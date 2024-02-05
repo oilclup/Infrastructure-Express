@@ -5,17 +5,16 @@ import store from '@store';
 /* import 'bootstrap'; */
 import 'bootstrap/dist/css/bootstrap.css';
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle'
+import SweetAlertPlugin from '@plugins/sweetalert'
 
 
-import { provideAxios } from './plugins/axios';
 
 const app = createApp(App);
   
-// Use other plugins
 app.use(bootstrap);
 app.use(router);
 app.use(store);
+app.use(SweetAlertPlugin);
 
-provideAxios(); // Move this before app.mount
 
 app.mount('#app');

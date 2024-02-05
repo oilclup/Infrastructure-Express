@@ -18,5 +18,11 @@ module.exports = {
       'vue/singleline-html-element-content-newline': 'off',
       'vue/no-unused-components': 'off',
 
-    }
+    },
+    overrides: [
+      {
+        files: ['axios.js'],
+   
+      },
+    ],
   }

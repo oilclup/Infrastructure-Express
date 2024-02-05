@@ -18,10 +18,10 @@
     "jwt-decode": "^4.0.0",
     "path": "^0.12.7",
     "popper.js": "^1.16.1",
+    "sweetalert2": "^11.10.4",
     "url-join": "^5.0.0",
     "vee-validate": "^4.3.5",
     "vue": "^3.0.0",
-    "vue-meta": "^2.4.0",
     "vue-router": "^4.0.6",
     "vuex": "^4.0.0",
     "yup": "^0.32.9"

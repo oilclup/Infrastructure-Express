@@ -1,5 +1,27 @@
 import employeeModel from 'api/modules/models/employee.model'
+import { paginatedResults } from 'api/services/pagination'
+import scopeSearch from 'api/helpers/searchQuery'
 
+export const getEmployee = async (req, res) => {
+  try {
+      let limit = +(req.query.size || 10)
+      let offset = +(limit * ((req.query.page || 1) - 1))
+
+      let _q = scopeSearch(req)
+
+      let rows = await employeeModel
+          .find(_q.isDeleted, _q.query)
+          .sort(_q.sort)
+          .limit(limit)
+          .skip(offset)
+      let count = await employeeModel.countDocuments(_q.query)
+      const result = await paginatedResults(rows, count, limit, req)
+      res.success(result)
+
+  } catch (error) {
+      res.error(error.message, error.status)
+  }
+}
 
 export const filterAPIExample = async (req, res) => {
  

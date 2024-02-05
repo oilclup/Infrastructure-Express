@@ -1,12 +1,8 @@
 import store from '@store';
 
-import Home from "@components/Home.vue";
 import Register from "@components/Register.vue";
-// lazy-loaded
 const Profile = () => import("@components/Profile.vue")
-const BoardAdmin = () => import("@components/BoardAdmin.vue")
-const BoardModerator = () => import("@components/BoardModerator.vue")
-const BoardUser = () => import("@components/BoardUser.vue")
+
 
 const dashboardRoutes = [
   {
@@ -19,8 +15,8 @@ const dashboardRoutes = [
     //   text: '1',
     //   varient: 'success',
     // },
-    component: () => (import('@pages/dashboard/Dashboard.vue')),
-    meta: { authRequired: true, superAdmin: true },
+    component: () => (import('@pages/dashboard/dashboard.vue')),
+    meta: { authRequired: true },
   //  props: (route) => ({ user: store.state.auth.currentUser || {} }),
   },
 ]
@@ -44,11 +40,48 @@ const authRoutes = [
 ];
 
 
-const publicRoutes = [
+const productRoutes = [
   {
-    path: "/home",
-    component: Home,
+    path: '/product',
+    name: 'Product',
+    header: '',
+    icon: 'home',
+    meta: { authRequired: true },
+    component: () => (import('@pages/products/index.vue')),
+    props: (route) => ({ user: store.state.auth.currentUser || {} }),
+    children: [
+      {
+        path: 'create',
+        name: 'CreateProduct',
+        component: () => (import('@pages/products/create.vue')),
+      },
+    ],
   },
+];
+
+const employeeRoutes = [
+  {
+    path: '/employee',
+    name: 'Employee',
+    header: '',
+    icon: 'home',
+    meta: { authRequired: true },
+    component: () => (import('@pages/employees/index.vue')), 
+    props: (route) => ({ user: store.state.auth.currentUser || {} }), 
+    children: [
+      {
+        path: 'create',
+        name: 'CreateEmployee',
+        component: () => (import('@pages/employees/create.vue')),
+      },
+    ],
+  },
+];
+
+
+
+const publicRoutes = [
+ 
   {
     path: "/register",
     component: Register,
@@ -59,28 +92,12 @@ const publicRoutes = [
     // lazy-loaded
     component: Profile,
   },
-  {
-    path: "/admin",
-    name: "admin",
-    // lazy-loaded
-    component: BoardAdmin,
-  },
-  {
-    path: "/mod",
-    name: "moderator",
-    // lazy-loaded
-    component: BoardModerator,
-  },
-  {
-    path: "/user",
-    name: "user",
-    // lazy-loaded
-    component: BoardUser,
-  },
 ];
 
 const authProtectedRoutes = [
-  ...dashboardRoutes
+  ...dashboardRoutes,
+  ...productRoutes,
+  ...employeeRoutes
 ]
 
 const allRoutes = [

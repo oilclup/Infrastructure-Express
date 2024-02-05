@@ -58,8 +58,8 @@ export default {
     });
 
     return {
-      username: '',
-      password: '',
+      username: 'test@gmail.com',
+      password: '123456',
       loading: false,
       message: "",
       schema,
@@ -69,13 +69,13 @@ export default {
     };
   },
   computed: {
-  /*   loggedIn() {
+   /*  loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     }, */
   },
   created() {
-   /*  if (this.loggedIn) {
-      this.$router.push("/profile");
+  /*   if (this.loggedIn) {
+      this.$router.push("/");
     } */
   },
   methods: {
@@ -89,12 +89,10 @@ export default {
         password: this.password,
       })
         .then((res) => {
-          console.log("res", res)
           this.tryingToLogIn = false
           this.isAuthError = false
-          // Redirect to the originally requested page, or to the home page
-
-          this.$router.push(this.$route.query.redirectFrom || { path: '/' })
+         window.location.href = '/';
+         //this.$router.push(this.$route.query.redirectFrom || { path: '/' });
         })
         .catch((error) => {
           console.log("error", error.response.data.error.message)
