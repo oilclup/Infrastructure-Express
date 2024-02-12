@@ -57,6 +57,15 @@ const productRoutes = [
       },
     ],
   },
+  {
+    path: '/product/create',
+    name: 'CreateProduct',
+    header: '',
+    icon: 'home',
+    meta: { authRequired: true },
+    component: () => (import('@pages/products/create.vue')), 
+    props: (route) => ({ user: store.state.auth.currentUser || {} }), 
+  },
 ];
 
 const employeeRoutes = [
@@ -68,13 +77,15 @@ const employeeRoutes = [
     meta: { authRequired: true },
     component: () => (import('@pages/employees/index.vue')), 
     props: (route) => ({ user: store.state.auth.currentUser || {} }), 
-    children: [
-      {
-        path: 'create',
-        name: 'CreateEmployee',
-        component: () => (import('@pages/employees/create.vue')),
-      },
-    ],
+  },
+  {
+    path: '/employee/create',
+    name: 'CreateEmployee',
+    header: '',
+    icon: 'home',
+    meta: { authRequired: true },
+    component: () => (import('@pages/employees/create.vue')), 
+    props: (route) => ({ user: store.state.auth.currentUser || {} }), 
   },
 ];
 

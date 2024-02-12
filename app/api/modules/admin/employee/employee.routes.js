@@ -1,9 +1,10 @@
 import express from 'express'
-import { getEmployee,filterAPIExample } from './employee.controller'
+import { getEmployee,createEmployee,filterAPIExample } from './employee.controller'
 
 const router = express.Router()
 
 router.get('/', getEmployee)
+router.post('/', createEmployee)
 
 router.post('/filter', filterAPIExample)
 

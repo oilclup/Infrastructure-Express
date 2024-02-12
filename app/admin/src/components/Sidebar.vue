@@ -1,19 +1,9 @@
 <template>
-  <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" >
+  <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
     <div class="position-sticky pt-3" style="height: 100vh;">
-      <ul class="list-unstyled ps-0 mt-3">
-        <li  class="mb-1">
-          <a href="/"  class="btn">
-            <h4>Dashboard</h4>
-          </a>
-      <!--     <div class="collapse" id="dashboard-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 h6">
-              <li><a href="#" class="nav-link rounded">Overview</a></li>
-              <li><a href="#" class="nav-link rounded">Weekly</a></li>
-              <li><a href="#" class="nav-link rounded">Monthly</a></li>
-              <li><a href="#" class="nav-link rounded">Annually</a></li>
-            </ul>
-          </div> -->
+      <ul class="list-unstyled mt-3">
+        <li class="mb-1">
+          <a href="/" class="btn btn-toggle rounded collapsed"><h4>Dashboard</h4></a>
         </li>
         <li class="border-top my-3"></li>
 

@@ -5,11 +5,11 @@
             <h4>{{ title }}</h4> 
         </button>
         <div class="collapse" :id="collapseId">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="/product" class="nav-link rounded">Products ALL</a></li>
-                <li><a href="/product/create" class="nav-link rounded">Create</a></li>
-            </ul>
-        </div>
+          <ul class="nav flex-column btn-toggle-nav list-unstyled fw-normal pb-1 h6">
+              <li class="nav-item"><a href="/product" class="nav-link text-dark">Products ALL</a></li>
+              <li class="nav-item"><a href="/product/create" class="nav-link text-dark">Create</a></li>
+          </ul>
+      </div>
     </li>
 </template>
   
