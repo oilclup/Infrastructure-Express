@@ -26,30 +26,7 @@
         <!-- Content of datatable -->
         <div v-else>
           <nav class="section-header mb-3">
-            <div class="row">
-              <div class="col-md-2">
-                <div class="row align-items-center">
-                  <div class="col-auto">
-                    <p class="mb-0">show</p>
-                  </div>
-                  <div class="col-auto">
-                    <select class="form-select" v-model="pagination.limit">
-                      <option value="10">10</option>
-                      <option value="25">25</option>
-                      <option value="50">50</option>
-                      <option value="100">100</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-8"></div>
-              <div class="col-md-2">
-                <div class="input-group">
-                  <input v-model="searchText" type="text" class="form-control">
-                  <button @click="onSearch" class="input-group-text"><i class="fas fa-search"></i></button>
-                </div>
-              </div>
-            </div>
+            <HeadPaginationCom :current-limit="pagination.limit" :search-text="searchText" @update:currentLimit="handleLimitChange" @update:searchText="handleSearchTextChange" />
           </nav>
           <div class="table-responsive">
             <table class="section-table table table-bordered">
@@ -116,9 +93,11 @@ export default {
     };
   },
   watch: {
-    "pagination.limit" () {
+    /* "pagination.limit" (newVal) {
+      this.pagination.page = 1;
+      this.pagination.limit = newVal;
        this.getEmployee();
-    }
+    } */
   },
   async created() {
     await this.getEmployee()
@@ -147,11 +126,23 @@ export default {
       this.pagination.page = pageNumber;
       await this.getEmployee();
     },
-    onSearch() {
+    handleLimitChange(newLimit) {
+      console.log("newLimit", newLimit)
+      this.pagination.page = 1;
+      this.pagination.limit = newLimit;
+      this.getEmployee();
+    },
+    handleSearchTextChange(newSearchText) {
+      console.log("text", newSearchText)
+      this.pagination.page = 1;
+      this.searchText = newSearchText;
+      this.getEmployee();
+    }
+      /*   onSearch() {
       this.pagination.page = 1;
       this.pagination.limit = 10;
       this.getEmployee();
-    }
+    }, */
     /*   async changeHeader({ pageLimit, searchData }) {
         this.pagination.limit = pageLimit
         this.searchText = searchData
