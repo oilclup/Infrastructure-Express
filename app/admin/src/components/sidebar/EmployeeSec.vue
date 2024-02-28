@@ -6,8 +6,8 @@
       </button>
       <div class="collapse" :id="collapseId">
           <ul class="nav flex-column btn-toggle-nav list-unstyled fw-normal pb-1 h6">
-              <li class="nav-item"><a href="/employee" class="nav-link text-dark">Employee ALL</a></li>
-              <li class="nav-item"><a href="/employee/create" class="nav-link text-dark">Create</a></li>
+              <li class="nav-item"><a href="/employee" class="nav-link text-dark">{{ $t('t-sidebar.employee.sub-getall') }}</a></li>
+              <li class="nav-item"><a href="/employee/create" class="nav-link text-dark">{{ $t('t-sidebar.employee.sub-create') }}</a></li>
           </ul>
       </div>
   </li>

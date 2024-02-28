@@ -20,7 +20,6 @@ router.beforeEach((to, from, next) => {
 
     if (currentUser) {
       const token = JSON.parse(currentUser);
-
       if (token.data && typeof token.data.accessToken === 'string') {
         const auth = jwtDecode(token.data.accessToken);
         console.log("auth-router", auth);
@@ -37,14 +36,20 @@ router.beforeEach((to, from, next) => {
         return next();
       }
     }
+
+
   } else {
     // User not logged in, redirect to login
     redirectToLogin(to, next);
   }
+
+
 });
 
 function redirectToLogin(to, next) {
   next({ path: '/login', query: { redirectFrom: to.fullPath } });
 }
+
+
 
 export default router;

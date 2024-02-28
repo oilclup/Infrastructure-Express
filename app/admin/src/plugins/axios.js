@@ -2,7 +2,7 @@ import axios from 'axios';
 import { provide } from 'vue';
 import join from 'url-join';
 
-const baseURL = process.env.VUE_APP_BASE_URL || 'http://localhost:3000';
+const baseURL = process.env.VUE_APP_API_URL || 'http://localhost:3000';
 
 const axiosInstance = axios.create({
   baseURL: baseURL,  // Correctly set baseURL here

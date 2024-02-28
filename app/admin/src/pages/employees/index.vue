@@ -2,7 +2,7 @@
   <Layout>
     <div>
       <Headerbar title="Employee" />
-      <div class="row">
+            <div class="row">
         <div class="col-sm">
           <Cardboard title="total" :total="items.length" />
         </div>
@@ -15,8 +15,7 @@
       </div>
 
       <div class="datatable mt-5">
-        <div v-if="loadingTable" class="text-center d-flex justify-content-center align-items-center"
-          style="height: 500px;"> <!-- Apply Flexbox classes -->
+        <div v-if="loadingTable" class="text-center d-flex justify-content-center align-items-center" style="height: 500px"> <!-- Apply Flexbox classes -->
           <div class="rounded p-5">
             <div class="spinner-border text-primary" role="status">
               <span class="visually-hidden">Loading...</span>
@@ -75,11 +74,6 @@ export default {
     PaginationCom,
     HeadPaginationCom
   },
-  computed: {
-    ...mapState({
-      user: state => state.auth.currentUser.data.data
-    })
-  },
   data() {
     return {
       items: [],
@@ -91,6 +85,11 @@ export default {
       searchText: "",
       loadingTable: true,
     };
+  },
+  computed: {
+    ...mapState({
+      user: state => state.auth.currentUser.data.data
+    })
   },
   watch: {
     /* "pagination.limit" (newVal) {

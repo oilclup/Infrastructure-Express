@@ -1,0 +1,28 @@
+{
+    "t-sidebar" : {
+        "dashboard" : {
+          "header" : "dashboard",
+          "sub-create" : "dashboard",
+          "sub-getall" : "dashboard"
+        },
+        "products" : {
+            "header" : "products",
+            "sub-create" : "create product",
+            "sub-getall" : "get product"
+        },
+        "employee" : {
+            "header" : "employee",
+            "sub-create" : "create employee",
+            "sub-getall" : "get employee"
+        },
+        "footer" : {
+            "lang" : "language",
+            "menu-profile" : {
+                "text" : "profile",
+                "setting" : "setting",
+                "profile" : "profile",
+                "signout" : "sign out"
+            }
+        }
+    }
+}

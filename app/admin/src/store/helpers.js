@@ -7,8 +7,15 @@ export const authComputed = {
   ...mapGetters('auth', ['loggedIn']),
 }
 
+export const genericComputed = {
+  ...mapGetters('generic', ['getLocale']),
+}
+
 
 export const authMethods = mapActions('auth', [
   'logIn',
 ])
 
+export const genericMethods = mapActions('generic', [
+  'switchLocale',
+])

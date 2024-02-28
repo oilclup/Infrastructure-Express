@@ -17,7 +17,8 @@ module.exports = {
       'vue/multiline-html-element-content-newline': 'off',
       'vue/singleline-html-element-content-newline': 'off',
       'vue/no-unused-components': 'off',
-
+      "vue/html-closing-bracket-newline": "off",
+      "vue/order-in-components": "off"
     },
     overrides: [
       {
