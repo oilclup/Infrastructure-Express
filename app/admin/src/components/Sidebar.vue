@@ -9,9 +9,10 @@
         </li>
         <li class="border-top my-3"></li>
 
-        <!-- Import and use ProductsSec -->
-        <ProductsSec :title="$t('t-sidebar.products.header')" collapseId="products-collapse" />
-        <EmployeeSec :title="$t('t-sidebar.employee.header')" collapseId="employees-collapse" />
+        <!-- Import and use -->
+        <ProductsSec v-if="isAllowedRoles('admin','superAdmin')" :title="$t('t-sidebar.products.header')" collapseId="products-collapse" />
+        <EmployeeSec v-if="isAllowedRoles('admin','superAdmin')" :title="$t('t-sidebar.employee.header')" collapseId="employees-collapse" />
+
       </ul>
     </div>
     <DropdownMultiLang />
@@ -37,13 +38,20 @@ export default {
   props: {},
   data() {
     return {
-      userRole: 'admin'
+      role: ''
     }
   },
+  created() {
+   let role = this.$store.state.auth.currentUser.data.data.role
+   this.role = role ? role : console.log("role undefined")
+  },
   async mounted() {
-    console.log("sidebar", this.$store.state.auth.currentUser.data.data.role);
   },
   computed: {},
-  methods: {},
+  methods: {
+    isAllowedRoles(...roles) {
+      return roles.includes(this.role);
+    }
+  }
 }
 </script>

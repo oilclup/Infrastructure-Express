@@ -11,7 +11,7 @@
         <li>
           <hr class="dropdown-divider">
         </li>
-        <li><a class="dropdown-item" href="#">{{ $t("t-sidebar.footer.menu-profile.signout") }}</a></li>
+        <li><router-link class="dropdown-item" :to="{ name: 'logout' }">{{ $t("t-sidebar.footer.menu-profile.signout") }}</router-link></li>
       </ul>
     </div>
 </template>

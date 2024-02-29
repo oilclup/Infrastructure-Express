@@ -12,6 +12,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
 
   const authRequired = to.matched.some((route) => route.meta.authRequired);
+  const requiredRoles = to.meta.roleRequired
 
   if (!authRequired) return next();
 
@@ -22,7 +23,6 @@ router.beforeEach((to, from, next) => {
       const token = JSON.parse(currentUser);
       if (token.data && typeof token.data.accessToken === 'string') {
         const auth = jwtDecode(token.data.accessToken);
-        console.log("auth-router", auth);
 
         const now = Math.floor(Date.now() / 1000);
         if (now > auth.exp) {
@@ -32,6 +32,11 @@ router.beforeEach((to, from, next) => {
           return location.reload();
         }
 
+
+        if (requiredRoles && !requiredRoles.includes(token.data.data.role)) {
+          return next('/');
+        }
+ 
         // Token is valid, proceed to the next route
         return next();
       }

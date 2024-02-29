@@ -17,6 +17,7 @@ const dashboardRoutes = [
     // },
     component: () => (import('@pages/dashboard/dashboard.vue')),
     meta: { authRequired: true },
+
   //  props: (route) => ({ user: store.state.auth.currentUser || {} }),
   },
 ]
@@ -26,8 +27,6 @@ const authRoutes = [
     name: 'login',
     component: () => (import('@pages/account/Login.vue')),
     beforeEnter: (to, from, next) => {
-      console.log("Before entering login route", to);
-      /* Your other logic */
        if (store.getters['auth/loggedIn']) {
         next({ path: '/' })
       } else {
@@ -36,6 +35,15 @@ const authRoutes = [
       next();
     },
 
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    meta: { authRequired: true },
+    beforeEnter: (to, from, next) => {
+     store.dispatch('auth/logOut')
+     next({ path: '/login' }) 
+    },
   },
 ];
 
@@ -46,25 +54,18 @@ const productRoutes = [
     name: 'Product',
     header: '',
     icon: 'home',
-    meta: { authRequired: true },
     component: () => (import('@pages/products/index.vue')),
     props: (route) => ({ user: store.state.auth.currentUser || {} }),
-    children: [
-      {
-        path: 'create',
-        name: 'CreateProduct',
-        component: () => (import('@pages/products/create.vue')),
-      },
-    ],
+    meta: { authRequired: true, roleRequired : ['admin'] },
   },
   {
     path: '/product/create',
     name: 'CreateProduct',
     header: '',
     icon: 'home',
-    meta: { authRequired: true },
     component: () => (import('@pages/products/create.vue')), 
-    props: (route) => ({ user: store.state.auth.currentUser || {} }), 
+    props: (route) => ({ user: store.state.auth.currentUser || {} }),
+    meta: { authRequired: true, roleRequired : ['admin'] }, 
   },
 ];
 
@@ -74,18 +75,20 @@ const employeeRoutes = [
     name: 'Employee',
     header: '',
     icon: 'home',
-    meta: { authRequired: true },
     component: () => (import('@pages/employees/index.vue')), 
     props: (route) => ({ user: store.state.auth.currentUser || {} }), 
+    meta: { authRequired: true, roleRequired : ['admin'] },
+   
   },
   {
     path: '/employee/create',
     name: 'CreateEmployee',
     header: '',
     icon: 'home',
-    meta: { authRequired: true },
     component: () => (import('@pages/employees/create.vue')), 
     props: (route) => ({ user: store.state.auth.currentUser || {} }), 
+    meta: { authRequired: true, roleRequired : ['admin'] },
+
   },
 ];
 

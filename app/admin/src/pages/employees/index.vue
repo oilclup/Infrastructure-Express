@@ -118,7 +118,7 @@ export default {
         }, 100);
       } catch (err) {
         console.log("Err : ", err)
-        this.$swalError('Oops!', 'Something went wrong.');
+        this.$swalError("ERROR !', 'something went wrong please try again later");
       }
     },
     async changePage(pageNumber) {

@@ -47,7 +47,7 @@ export default {
         this.items = resp.data.data.data
       } catch (err) {
         console.log("dashborad Err : ", err)
-        this.$swalError('Oops!', 'Something went wrong.');
+        this.$swalError("ERROR !', 'something went wrong please try again later");
       }
     }
   },
