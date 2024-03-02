@@ -94,7 +94,7 @@ export default {
                 }
             } catch (err) {
                 console.log("Err : ", err)
-                this.$swalError("ERROR !', 'something went wrong please try again later");
+                this.$swalError("ERROR !", "something went wrong please try again later");
             }
         },
     },

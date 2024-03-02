@@ -109,16 +109,14 @@ export default {
       try {
         this.loadingTable = true;
         let resp = await axios.get(`/api/employee?page=${this.pagination.page}&size=${this.pagination.limit}&searchText=${this.searchText}`)
-
         this.items = resp.data.data.data
         this.pagination.totalPages = resp.data.data.totalPages;
         this.pagination.page = resp.data.data.currentPage;
         setTimeout(async () => {
           this.loadingTable = false;
         }, 100);
-      } catch (err) {
-        console.log("Err : ", err)
-        this.$swalError("ERROR !', 'something went wrong please try again later");
+      } catch (error) {
+        this.$swalError("ERROR !", error.response.data.error.message);
       }
     },
     async changePage(pageNumber) {

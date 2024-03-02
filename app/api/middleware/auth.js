@@ -37,7 +37,9 @@ const checkRole = (roles) => {
   return (req, res, next) => {
       try {
           if (!roles.includes(req.adminInfo.role)) {
-              throw new Error('You do not have permission to perform this action!');
+              const error = new Error('You do not have permission to perform this action!');
+              error.status = 403;
+              throw error
           }
           next();
       } catch (error) {

@@ -1,5 +1,5 @@
 <template>
-  <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
     <div class="position-sticky pt-3" style="height: 100vh;">
       <ul class="list-unstyled mt-3">
         <li class="mb-1">
@@ -15,11 +15,11 @@
 
       </ul>
     </div>
-    <DropdownMultiLang />
+    <!-- <DropdownMultiLang />
     <hr />
-    <MenuProfile /> 
-
+    <MenuProfile />  -->
   </nav>
+ 
 </template>
 
 <script>
@@ -38,7 +38,7 @@ export default {
   props: {},
   data() {
     return {
-      role: ''
+      role: '',
     }
   },
   created() {
@@ -51,7 +51,8 @@ export default {
   methods: {
     isAllowedRoles(...roles) {
       return roles.includes(this.role);
-    }
+    },
+   
   }
 }
 </script>

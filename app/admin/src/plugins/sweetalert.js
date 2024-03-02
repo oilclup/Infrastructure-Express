@@ -17,8 +17,8 @@ const SweetAlertPlugin = {
     app.config.globalProperties.$swalError = (title, text) => {
       Swal.fire({
         icon: 'error',
-        title: title || 'Error',
-        text: text || 'An unexpected error occurred.',
+        title: title || 'Error !',
+        text: text || 'something went wrong please try again later',
       });
     };
   },

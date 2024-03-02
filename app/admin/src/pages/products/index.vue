@@ -39,11 +39,10 @@
       async getExample() {
         try {
           let resp = await axios.get('/api/example')
-          console.log("data", resp)
           this.items = resp.data.data.data
-        } catch (err) {
-          console.log("dashborad Err : ", err)
-          this.$swalError("ERROR !', 'something went wrong please try again later");
+        } catch (error) {
+          this.$swalError("ERROR !", error.response.data.error.message);
+
         }
       }
     },

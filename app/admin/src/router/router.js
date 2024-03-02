@@ -25,7 +25,7 @@ const authRoutes = [
   {
     path: '/login',
     name: 'login',
-    component: () => (import('@pages/account/Login.vue')),
+    component: () => (import('@pages/account/login.vue')),
     beforeEnter: (to, from, next) => {
        if (store.getters['auth/loggedIn']) {
         next({ path: '/' })

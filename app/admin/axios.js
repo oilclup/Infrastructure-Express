@@ -14,9 +14,12 @@ instance.interceptors.response.use(
   },
   error => {
     if (error.response && error.response.status === 401) {
-      // Unauthorized error, handle redirection here
       throw new Error('Unauthorized');
     }
+    // } else if(error.response && error.response.status === 403) {
+    //   console.log(error.response.data.error.message)
+    //   throw new Error('Forbidden');
+    // }
     return Promise.reject(error);
   }
 );
