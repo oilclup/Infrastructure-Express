@@ -9,9 +9,7 @@ const schema = new mongoose.Schema(
             type: Number,
             required: true,
         },
-        image: {
-            type: String,
-        },
+        image: [{ path : { type: String}, name : { type: String}, }],
         isDeleted: { type: Boolean, default: false },
         deletedAt: { type: Date, default: null },
 
@@ -21,4 +19,4 @@ const schema = new mongoose.Schema(
 
 
 
-module.exports = mongoose.model('Admin', schema)
+module.exports = mongoose.model('Products', schema)

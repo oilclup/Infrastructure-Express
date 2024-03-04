@@ -37,6 +37,7 @@ app.use(function(req, res, next) {
 
 
 app.use('/api', AdminRoutes)
+app.use('/api/uploads', express.static(`${__dirname}/uploads/images/products`))
 
 
 // view engine

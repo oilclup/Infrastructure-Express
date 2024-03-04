@@ -1,9 +1,7 @@
 <template>
-  <div class="d-flex bd-highlight">
-  <div class="p-2 flex-grow-2 bd-highlight"><h4 class="d-flex align-items-start">{{ $t("t-sidebar.footer.lang") }} :</h4></div>
-  <div class="p-2 bd-highlight">
-    <div class="dropdown-multi-lang d-flex align-items-center">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuLangMulti" data-bs-toggle="dropdown"
+<div>
+  <div class="dropdown">
+      <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuLangMulti" data-bs-toggle="dropdown"
         aria-expanded="false">
         {{ this.$i18n.locale }}
       </button>
@@ -12,8 +10,6 @@
         <li><a class="dropdown-item" @click="updateLocale('th')">th</a></li>
       </ul>
     </div>
-  </div>
-
 </div>
 </template>
   
