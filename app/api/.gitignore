@@ -175,3 +175,4 @@ Temporary Items
 # storage
 storage/uploads/*/*
 tmp
+/uploads
