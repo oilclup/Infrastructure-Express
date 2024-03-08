@@ -6,23 +6,23 @@
                 <form @submit="handleSubmit($event, onSubmit)">
                     <div class="row g-3 mt-3 mb-5">
                         <div class="col-sm-6">
-                            <label for="Name" class="form-label">Name</label>
+                            <label for="Name" class="form-label">{{ $t("form.employee.name") }}</label>
                             <Field type="text" v-model="form.name" class="form-control" name="name" />
                             <ErrorMessage class="text-danger" name="name" />
                         </div>
                         <div class="col-sm-6">
-                            <label for="email" class="form-label">Email</label>
+                            <label for="email" class="form-label">{{ $t("form.employee.email") }}</label>
                             <Field type="text" v-model="form.email" class="form-control" name="email" />
                             <ErrorMessage class="text-danger" name="email" />
                         </div>
                         <div class="col-sm-6">
-                            <label for="age" class="form-label">Age</label>
+                            <label for="age" class="form-label">{{ $t("form.employee.age") }}</label>
                             <Field type="number" v-model.number="form.age" class="form-control" name="age" step="1" />
                             <ErrorMessage class="text-danger" name="age" />
                         </div>
 
                         <div class="col-sm-6">
-                            <label for="position" class="form-label">Position</label>
+                            <label for="position" class="form-label">{{ $t("form.employee.position") }}</label>
                             <Field as="select" v-model="form.position" class="form-select" name="position">
                                 <option value="">Choose...</option>
                                 <option value="manager">manager</option>
@@ -37,9 +37,9 @@
                     </div>
                     <hr class="my-4">
                     <div class="d-flex bd-highlight">
-                        <button class="w-100 btn btn-primary btn-lg rounded-0" type="submit">save</button>
-                        <button class="w-100 btn btn-danger btn-lg rounded-0" type="reset"><a class="nav-link"
-                                href="/employee">cancel</a></button>
+                        <button class="w-100 btn btn-primary btn-lg rounded-0" type="submit">{{ $t("botton.form.save") }}</button>
+                        <router-link class="w-100 btn btn-danger btn-lg rounded-0" :to="{ name: 'Employee' }">{{ $t("botton.form.cancel") }}</router-link>
+
                     </div>
                 </form>
             </VeeForm>

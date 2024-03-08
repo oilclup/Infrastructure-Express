@@ -24,5 +24,21 @@
                 "signout" : "sign out"
             }
         }
+    },
+    "botton" : {
+        "form" : {
+            "save" : "save",
+            "cancel" : "cancel"
+        }
+
+    },
+    "form" : {
+        "employee" : {
+            "name" : "name",
+            "email" : "email",
+            "age" : "age",
+            "position" : "position"
+        }
     }
+    
 }
