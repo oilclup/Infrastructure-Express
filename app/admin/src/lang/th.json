@@ -1,4 +1,15 @@
 {
+    "navbar" : {
+        "profile" : {
+            "lang" : "ภาษา",
+            "menu-profile" : {
+                "text" : "โปรไฟล์",
+                "setting" : "ตั้งค่า",
+                "profile" : "โปรไฟล์",
+                "signout" : "ออกจากระบบ"
+            }
+        }
+    },
     "t-sidebar" : {
         "dashboard" : {
           "header" : "หน้าแรก"
@@ -12,18 +23,9 @@
             "header" : "พนักงาน",
             "sub-create" : "สร้างพนักงาน",
             "sub-getall" : "ข้อมูลพนักงานทั้งหมด"
-        },
-        "footer" : {
-            "lang" : "เปลี่ยนภาษา",
-            "menu-profile" : {
-                "text" : "โปรไฟล์",
-                "setting" : "ตั้งค่า",
-                "profile" : "โปรไฟล์",
-                "signout" : "ออกจากระบบ"
-            }
         }
     },
-    "botton" : {
+    "button" : {
         "form" : {
             "save" : "บันทึก",
             "cancel" : "ยกเลิก"
@@ -32,10 +34,21 @@
     },
     "form" : {
         "employee" : {
-            "name" : "ชื่อ",
-            "email" : "อีเมล",
-            "age" : "อายุ",
-            "position" : "ตำเเหน่ง"
+            "lable" : {
+                "name" : "ชื่อ",
+                "email" : "อีเมล",
+                "age" : "อายุ",
+                "position" : "ตำเเหน่ง"
+            }
+        },
+        "product" : {
+            "lable" : {
+                "name" : "ชื่อสินค้า",
+                "detail" : "รายละเอียด",
+                "price" : "ราคา",
+                "qty" : "จำนวน",
+                "image" : "รูปภาพ"
+            }
         }
     }
 

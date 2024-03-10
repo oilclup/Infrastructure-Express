@@ -1,7 +1,7 @@
 <template>
     <Layout>
       <div>
-        <Headerbar title="Products" />
+        <Headerbar :title="$t('t-sidebar.products.header')" />
         <div class="row">
           <div class="col-sm"><Cardboard title="total" :total="items.length" /></div>
           <div class="col-sm"><Cardboard title="total" :total="items.length" /></div>

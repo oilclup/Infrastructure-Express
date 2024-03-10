@@ -32,8 +32,8 @@ const uploadProcessImg = upload.fields([
 
 const resizerImages = async (req, res, next) => {
     try {
-        let imgRespList = [];
-        let imglist;
+        let imgRespList = []
+        let imglist
 
         let pathFile = req.files.products_file
             ? 'products'
@@ -41,36 +41,42 @@ const resizerImages = async (req, res, next) => {
             ? 'content'
             : ''
 
-        req.files.products_file ? imglist = req.files.products_file :
-        req.files.content_file ? imglist = req.files.content_file : ""
+        req.files.products_file
+            ? (imglist = req.files.products_file)
+            : req.files.content_file
+            ? (imglist = req.files.content_file)
+            : ''
+
+        if(!req.files.products_file) return next()
 
         const directoryPath = `uploads/images/${pathFile}`
         if (!fs.existsSync(directoryPath)) {
             console.log(`${pathFile} directory does not exist. Creating...`)
             fs.mkdirSync(directoryPath, { recursive: true })
-        } 
+        }
 
         const date = Date.now()
 
         for (let i = 0; i < imglist.length; i++) {
-          const file = imglist[i];
-          const mimetype = file.mimetype.split('/')[1];
-          const randomNum = getRandomNumber(1,100);
-      
-          await sharp(file.buffer)
-              .webp({ quality: 75 })
-              .toFile(`${directoryPath}/${date}-${i}-${randomNum}.${mimetype}`);
-          
-          imgRespList.push({
-              path : directoryPath,
-              name: `${date}-${i}-${randomNum}.${mimetype}`,
-          });
+            const file = imglist[i]
+            const mimetype = file.mimetype.split('/')[1]
+            const randomNum = getRandomNumber(1, 100)
+
+            await sharp(file.buffer)
+                .webp({ quality: 75 })
+                .toFile(`${directoryPath}/${date}-${i}-${randomNum}.${mimetype}`)
+            //.resize({ width: 500, height: 500, fit: 'inside' }) Resize and ensure fit within specified dimensions
+
+            imgRespList.push({
+                path: directoryPath,
+                name: `${date}-${i}-${randomNum}.${mimetype}`,
+            })
         }
-              
+
         req.body.imgRespList = imgRespList
         next()
-    } catch (err) {
-        next(err)
+    } catch (error) {
+        return res.error(`resize : ${error.message}`, error.status)
     }
 }
 

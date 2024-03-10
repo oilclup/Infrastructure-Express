@@ -1,9 +1,18 @@
 {
+    "navbar" : {
+        "profile" : {
+            "lang" : "language",
+            "menu-profile" : {
+                "text" : "profile",
+                "setting" : "setting",
+                "profile" : "profile",
+                "signout" : "sign out"
+            }
+        }
+    },
     "t-sidebar" : {
         "dashboard" : {
-          "header" : "dashboard",
-          "sub-create" : "dashboard",
-          "sub-getall" : "dashboard"
+          "header" : "dashboard"
         },
         "products" : {
             "header" : "products",
@@ -14,18 +23,9 @@
             "header" : "employee",
             "sub-create" : "create employee",
             "sub-getall" : "get employee"
-        },
-        "footer" : {
-            "lang" : "language",
-            "menu-profile" : {
-                "text" : "profile",
-                "setting" : "setting",
-                "profile" : "profile",
-                "signout" : "sign out"
-            }
         }
     },
-    "botton" : {
+    "button" : {
         "form" : {
             "save" : "save",
             "cancel" : "cancel"
@@ -34,10 +34,21 @@
     },
     "form" : {
         "employee" : {
-            "name" : "name",
-            "email" : "email",
-            "age" : "age",
-            "position" : "position"
+            "lable" : {
+                "name" : "name",
+                "email" : "email",
+                "age" : "age",
+                "position" : "position"
+            }
+        },
+        "product" : {
+            "lable" : {
+                "name" : "name",
+                "detail" : "detail",
+                "price" : "price",
+                "qty" : "quantity",
+                "image" : "images"
+            }
         }
     }
     
